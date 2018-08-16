@@ -1,14 +1,17 @@
 package org.afeng.servlet;
 
+import org.afeng.dao.StuDao;
 import org.afeng.dao.UserDao;
+import org.afeng.dao.impl.StuDaoImpl;
 import org.afeng.dao.impl.UserDaoImpl;
+import org.afeng.domain.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+import java.util.List;
 /**
  * @author afeng
  * @date 2018/8/15 21:16
@@ -37,15 +40,19 @@ public class LoginServlet extends HttpServlet
         boolean result = userDao.login(userName, password);
         if (result)
         {
-            response.getWriter().write("登录成功!");
+            StuDao stuDao=new StuDaoImpl();
+            List<Student> list=stuDao.findAll();
+
+            //把集合存储到作用域中  session存储
+            request.getSession().setAttribute("list",list);
+
+            response.sendRedirect("stu_list.jsp");
         } else
         {
             response.getWriter().write("登录失败!");
         }
 
     }
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
