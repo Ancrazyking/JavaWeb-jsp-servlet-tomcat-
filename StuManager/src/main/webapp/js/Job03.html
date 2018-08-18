@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #menuBox {
+            width: 1000px;
+            margin: 30px auto;
+            background-color: #eeeeee;
+            border: 1px solid #cccccc;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #menus > li {
+            float: left;
+        }
+
+        #menus > li a {
+            display: block;
+            width: 140px;
+            text-decoration: none;
+            color: #000;
+            text-align: center;
+        }
+
+        #menus li dl {
+            border: 1px solid #ccc;
+            background-color: #eeeeee;
+            width: 138px;
+        }
+
+        #menus li dl dt {
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var a1 = document.getElementById("a1");
+            var a2 = document.getElementById("a2");
+            var dl = document.getElementsByTagName("dl");
+            a1.onmouseover = function () {
+                dl[0].style.display = "block";
+            }
+
+            a1.onmouseout = function () {
+                dl[0].style.display = "none";
+            }
+
+            a2.onmouseover = function () {
+                dl[1].style.display = "block";
+            }
+
+            a2.onmouseout = function () {
+                dl[1].style.display = "none";
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+<div id="menuBox">
+    <ul id="menus">
+        <li><a href="#">首页</a></li>
+        <li>
+            <a id="a1" href="#">新闻</a>
+            <dl style="display:none">
+                <dt><a href="#">国际要问</a></dt>
+                <dt><a href="#">国内动态</a></dt>
+            </dl>
+        </li>
+
+        <li>
+            <a id="a2" href="#">游戏下载</a>
+            <dl style="display:none">
+                <dt><a href="#">射击小游戏</a></dt>
+                <dt><a href="#">动作小游戏</a></dt>
+                <dt><a href="#">单击小游戏</a></dt>
+                <dt><a href="#">装扮小游戏</a></dt>
+            </dl>
+            </dt>
+        </li>
+        <li><a href="#">关于我们</a></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script >
+        window.onload=function(){
+            var h2=document.getElementsByTagName("h2")[0];
+            setInterval(function(){
+                var date=new Date();
+
+                //	2018-8-17 11:29:18
+                var year=date.getFullYear();
+                var month=date.getMonth()+1;
+                var day=date.getDate();
+                var hour=date.getHours();
+                var seconds=date.getSeconds();
+                seconds=(hour>12)?(seconds+"     PM"):(seconds+"     AM");
+                var minutes=date.getMinutes();
+                hour=(hour>12)?(hour-12):(hour);
+                var dd=date.getDay();
+                var xq;
+                switch (dd){
+                    case 0:
+                        xq="星期天";
+                        break;
+                    case 1:
+                        xq="星期一";
+                        break;
+                    case 2:
+                        xq="星期二";
+                        break;
+                    case 3:
+                        xq="星期三";
+                        break;
+                    case 4:
+                        xq="星期四";
+                        break;
+                    case 5:
+                        xq="星期五";
+                        break;
+                    case 6:
+                        xq="星期天";
+                        break;
+                    default:
+                        break;
+                }
+
+
+                var time=year+"年 "+month+"月 "+day+"日    "+hour+":"+minutes+":"+seconds+"  "+xq;
+
+                h2.innerHTML=time;
+            },1000);
+        }
+    </script>
+
+</head>
+<body>
+<h1>你好,欢迎访问贵美商城</h1>
+<h2></h2>
+</body>
+</html>

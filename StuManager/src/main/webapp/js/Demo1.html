@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        span {
+            width: 80px;
+            height: 50px;
+            border: solid 1px gainsboro;
+        }
+
+        div {
+            width: 300px;
+            height: 100px;
+            border: solid 1px gainsboro;
+        }
+    </style>
+    <script>
+        //标签的切换方式
+
+        window.onload = function () {
+            var tab1 = document.getElementById("tab1");
+            var tab2 = document.getElementById("tab2");
+            var div1 = document.getElementById("div1");
+            var div2 = document.getElementById("div2");
+
+            tab1.onmouseover=function () {
+                tab1.style.background="gray";
+                tab2.style.background="none";
+
+                //隐藏
+                div1.style.display="block";
+                div2.style.display="none";
+            }
+
+            tab2.onmouseover=function () {
+                tab2.style.background="gray";
+                tab1.style.background="none";
+                //隐藏
+                div2.style.display="block";
+                div1.style.display="none";
+            }
+        }
+
+    </script>
+</head>
+<body>
+<span id="tab1">tab1</span><span id="tab2">tab2</span><br/>
+<div id="div1" style="display: none">div1</div>
+<div id="div2" style="display: none">div2</div>
+</body>
+</html>

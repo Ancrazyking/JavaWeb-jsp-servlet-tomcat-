@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            border: solid 1px gainsboro;
+            width: 400px;
+        }
+    </style>
+
+
+    <script>
+        window.onload = function () {
+            var passName = document.getElementById("passName");
+            var userName = document.getElementById("userName");
+            var phoneNum = document.getElementById("phoneNum");
+            var email = document.getElementById("email");
+            var submit = document.getElementById("btn1");
+            submit.onclick = function () {
+                if (userName.value.length <= 0)
+                {
+                    alert("昵称不能为空");
+                    userName.focus();
+                    return false;
+                }
+                if (passName.value.length <= 0)
+                {
+                    alert("用户名不能为空");
+                    passName.focus();
+                    return false;
+                }
+                if (phoneNum.value.length <= 0)
+                {
+                    alert("手机号码不能为空");
+                    phoneNum.focus();
+                    return false;
+                }
+
+                if(!(email.value.length>0 && email.value.indexOf("@")>0 && email.value.indexOf(".")>email.value.indexOf("@"))){
+                    alert("邮箱为空或邮箱格式错误");
+                    email.focus();//
+                    return false;
+                }
+                //如果验证正确，代表可以提交，返回true
+                return true;
+            }
+
+        }
+    </script>
+</head>
+<body>
+<img src="捕获.PNG"/>
+<div>
+    通行证用户名:<input type="text" id="passName"/><br/>
+    登录密码:<input type="password" id="password"/><br/>
+    重复登录密码:<input type="password" id="repassword"/><br/>
+    性别:<input type="radio">男 <input type="radio">女<br/>
+    真实姓名:<input type="text" id="name"/><br/>
+    昵称:<input type="text" id="userName"/><br/>
+    关联手机号:<input type="text" id="phoneNum"/><br/>
+    保密邮箱:<input type="text" id="email"/><br/>
+    <img src="btn.PNG" id="btn1">
+</div>
+</body>
+</html>

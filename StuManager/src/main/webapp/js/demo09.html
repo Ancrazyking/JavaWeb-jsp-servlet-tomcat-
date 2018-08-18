@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+表单验证：
+-->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js9.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			form{
+				width: 25%;
+			 	border: 1px solid black;
+			 	margin: 200px auto;
+			 	padding: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="demo08.html" method="get" onsubmit="return checkForm()">
+			<table align="center" style="text-align: right;" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>用户名：</td>
+					<td><input type="text" name="username" id="username"/></td>
+				</tr>
+				
+				<tr>
+					<td>密码：</td>
+					<td><input type="password" name="password" id="password"/></td>
+				</tr>
+				
+				<tr>
+					<td>重复密码：</td>
+					<td><input type="password" name="rePassword" id="rePassword"/></td>
+				</tr>
+				
+				<tr>
+					<td>邮箱：</td>
+					<td><input type="text" name="email" id="email"/></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><input type="submit" value="注册"/></td>
+				</tr>
+			</table>
+		</form>
+		</form>
+	</body>
+</html>

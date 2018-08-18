@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var phoneNum = document.getElementById("phoneNum");
+            var btn1 = document.getElementById("btn1");
+            var pattern = /^1[3-578]\d{9}$/;
+            btn1.onclick = function () {
+                if (pattern.test(phoneNum.value))
+                {
+                    alert("校验成功");
+                } else
+                {
+                    alert("校验失败");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<h2>表单验证</h2>
+手机号码:<input type="text" id="phoneNum"/>
+<input type="button" id="btn1" value="校验"/>
+</body>
+</html>
