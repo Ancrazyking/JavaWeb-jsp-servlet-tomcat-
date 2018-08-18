@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="DBUtils:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="DBUtils.war">
+      <element id="artifact" artifact-name="DBUtils:war exploded" />
+    </root>
+  </artifact>
+</component>
