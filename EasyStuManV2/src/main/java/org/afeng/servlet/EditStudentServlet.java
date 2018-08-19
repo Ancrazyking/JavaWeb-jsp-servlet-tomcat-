@@ -9,40 +9,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+
 /**
  * @author afeng
- * @date 2018/8/18 20:05
+ * @date 2018/8/19 10:59
  **/
-public class SearchStudentServlet extends HttpServlet
+public class EditStudentServlet extends HttpServlet
 {
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
-        request.setCharacterEncoding("utf-8");
-        StuService stuService=new StuServiceImpl();
-        String stuName=request.getParameter("stuName");
-        String stuGender=request.getParameter("stuGender");
         try
         {
-            List<Student> list=stuService.findStudent(stuName,stuGender);
-            request.setAttribute("list",list);
             /**
-             * 内部请求请求转发
+             * 获取传入的参数stuId
              */
-            request.getRequestDispatcher("stu_list.jsp").forward(request,response);
+            int stuId = Integer.parseInt(request.getParameter("stuId"));
 
-        } catch (Exception e)
-        {
+            StuService stuService = new StuServiceImpl();
+            Student stu = stuService.findStudentById(stuId);
+
+            /**
+             * 设置stu属性
+             */
+            request.setAttribute("stu",stu);
+
+            /**
+             * 内部请求转发
+             */
+            request.getRequestDispatcher("edit.jsp").forward(request,response);
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        doGet(request, response);
+        doGet(request,response);
     }
 }

@@ -82,21 +82,21 @@ public class StuDaoImpl implements StuDao
     @Override
     public void insert(Student student) throws Exception
     {
-        queryRunner.update("insert into student value(?,?,?,?,?,?,?)", student.getStuId(),
-                student.getStuName(), student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday());
+        queryRunner.update("insert into student values(?,?,?,?,?,?,?)", student.getStuId(),
+                student.getStuName(), student.getPhone(), student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday());
     }
 
     @Override
     public void delete(int id) throws Exception
     {
-        queryRunner.update("delete from student where id=?", id);
+        queryRunner.update("delete from student where stuId=?", id);
     }
 
     @Override
     public void update(Student student) throws Exception
     {
-        queryRunner.update("update student  set stuname=? and gender=? and hobby=? and info=? and birthday=?  where stuid=? ",
-                student.getStuName(), student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday(), student.getStuId());
+        queryRunner.update("update student  set stuname=?, phone= ?,gender=? , hobby=? ,info=? , birthday=?  where stuid=? ",
+                student.getStuName(), student.getPhone(),student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday(), student.getStuId());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class StuDaoImpl implements StuDao
         /**
          * 获取总的记录数
          */
-        Integer result=(Integer) queryRunner.query("select count(*) from student",new ScalarHandler());
+        Integer result = (Integer) queryRunner.query("select count(*) from student", new ScalarHandler());
         return result.intValue();
     }
 }

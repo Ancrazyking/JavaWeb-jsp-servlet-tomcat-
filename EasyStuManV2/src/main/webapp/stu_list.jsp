@@ -29,7 +29,7 @@
 <body>
 
 <form action="search_stu" method="post">
-    <table border="1" width="700">
+    <table border="1" width="1000">
         <tr>
             <td colspan="8">
                 按姓名查询:<input type="text" name="stuName"/>&nbsp;
@@ -66,7 +66,7 @@
                 <td>${stu.birthday}</td>
                 <td>${stu.hobby}</td>
                 <td>${stu.info}</td>
-                <td><a herf="edit?stuId=${stu.stuId}">更新</a>   <a href="#" onclick="deleteStu(${stu.stuId})">删除</a></td>
+                <td colspan="8"><a href="edit?stuId=${stu.stuId}">更新</a>   <a href="#" onclick="deleteStu(${stu.stuId})">删除</a></td>
             </tr>
         </c:forEach>
 

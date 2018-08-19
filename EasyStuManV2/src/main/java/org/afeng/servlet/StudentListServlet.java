@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 /**
  * @author afeng
  * @date 2018/8/18 19:27
@@ -20,15 +21,15 @@ public class StudentListServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        StuService stuService=new StuServiceImpl();
+        StuService stuService = new StuServiceImpl();
         try
         {
             /**
              * 将list属性添加到会话中
              */
-            List<Student> list=stuService.findAll();
-            request.getSession().setAttribute("list",list);
-            response.sendRedirect("stu_list.jsp");
+            List<Student> list = stuService.findAll();
+            request.setAttribute("list", list);
+            request.getRequestDispatcher("stu_list.jsp").forward(request, response);
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -38,6 +39,6 @@ public class StudentListServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        doGet(request,response);
+        doGet(request, response);
     }
 }

@@ -14,8 +14,6 @@
         <url-pattern>/stu_list</url-pattern>
     </servlet-mapping>
 
-
-
     <servlet>
         <servlet-name>StudentSearchServlet</servlet-name>
         <servlet-class>org.afeng.servlet.SearchStudentServlet</servlet-class>
@@ -24,4 +22,36 @@
         <servlet-name>StudentSearchServlet</servlet-name>
         <url-pattern>/search_stu</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>EditStudentServlet</servlet-name>
+        <servlet-class>org.afeng.servlet.EditStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditStudentServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>UpdateStudentServlet</servlet-name>
+        <servlet-class>org.afeng.servlet.UpdateStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateStudentServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>DeletStudentServlet</servlet-name>
+        <servlet-class>org.afeng.servlet.DeleteStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletStudentServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

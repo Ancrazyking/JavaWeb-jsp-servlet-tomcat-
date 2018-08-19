@@ -18,6 +18,22 @@ public class Student implements Serializable
     private Date birthday;
 
 
+    public Student()
+    {
+
+    }
+
+    public Student(int stuId, String stuName, String gender, String phone, String hobby, String info, Date birthday)
+    {
+        this.stuId = stuId;
+        this.stuName = stuName;
+        this.gender = gender;
+        this.phone = phone;
+        this.hobby = hobby;
+        this.info = info;
+        this.birthday = birthday;
+    }
+
     @Override
     public String toString()
     {
