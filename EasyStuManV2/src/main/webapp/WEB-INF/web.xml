@@ -54,4 +54,24 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>AddStudentServlet</servlet-name>
+        <servlet-class>org.afeng.servlet.AddStudentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddStudentServlet</servlet-name>
+        <url-pattern>/add_stu</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet>
+        <servlet-name>StudentListByPageServlet</servlet-name>
+        <servlet-class>org.afeng.servlet.StudentListByPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentListByPageServlet</servlet-name>
+        <url-pattern>/stu_listByPage</url-pattern>
+    </servlet-mapping>
+
 </web-app>

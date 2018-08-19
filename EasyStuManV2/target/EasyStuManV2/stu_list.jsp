@@ -24,8 +24,6 @@
     </script>
 </head>
 
-
-
 <body>
 
 <form action="search_stu" method="post">
@@ -34,10 +32,10 @@
             <td colspan="8">
                 按姓名查询:<input type="text" name="stuName"/>&nbsp;
                 按性别查询:<select name="stuGender">
-                                <option value="">--请选择--</option>
-                                <option value="男">男</option>
-                                <option value="女">女</option>
-                          </select>
+                <option value="">--请选择--</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
                 &nbsp;&nbsp;&nbsp;
                 <input type="submit" value="查询"/>
                 &nbsp;&nbsp;&nbsp;
@@ -66,10 +64,27 @@
                 <td>${stu.birthday}</td>
                 <td>${stu.hobby}</td>
                 <td>${stu.info}</td>
-                <td colspan="8"><a href="edit?stuId=${stu.stuId}">更新</a>   <a href="#" onclick="deleteStu(${stu.stuId})">删除</a></td>
+                <td colspan="8"><a href="edit?stuId=${stu.stuId}">更新</a> <a href="#" onclick="deleteStu(${stu.stuId})">删除</a>
+                </td>
             </tr>
         </c:forEach>
 
+
+        <!--分页展示-->
+        <tr>
+            <td colspan="8">
+                第${pageBean.currentPage}/${pageBean.totalPage}
+                &nbsp;&nbsp;
+                每页显示${pageBean.pageSize}条 &nbsp;&nbsp;&nbsp;
+                总的记录数${pageBean.totalSize} &nbsp;&nbsp;&nbsp;
+                <c:if test="${pageBean.currentPage!=1}">
+                    <a href="stu_listByPage?currentPage=1">首页</a>
+                    |<a href="stu_listByPage?currentPage=${pageBean.currentPage-1}">上一页</a>
+                </c:if>
+
+
+            </td>
+        </tr>
     </table>
 </form>
 

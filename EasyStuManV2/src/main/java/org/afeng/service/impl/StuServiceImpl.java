@@ -1,5 +1,6 @@
 package org.afeng.service.impl;
 
+import org.afeng.bean.PageBean;
 import org.afeng.bean.Student;
 import org.afeng.dao.StuDao;
 import org.afeng.dao.impl.StuDaoImpl;
@@ -15,6 +16,33 @@ public class StuServiceImpl implements StuService
 {
 
     StuDao stuDao = new StuDaoImpl();
+
+    @Override
+    public PageBean findStudentByPage(int currentPage) throws Exception
+    {
+        PageBean<Student> pageBean = new PageBean<>();
+
+        /**
+         * 当前页数
+         */
+        pageBean.setCurrentPage(currentPage);
+        /**
+         * 当前页显示几条记录
+         */
+        pageBean.setPageSize(StuDao.PAGE_SIZE);
+        pageBean.setList(stuDao.findStudentByPage(currentPage));
+        /**
+         * 总记录数
+         */
+        pageBean.setTotalSize(stuDao.totalRecord());
+        /**
+         * 总页数  业务逻辑
+         */
+        pageBean.setTotalPage(stuDao.totalRecord() % StuDao.PAGE_SIZE == 0 ? stuDao.totalRecord() / StuDao.PAGE_SIZE : stuDao.totalRecord() / StuDao.PAGE_SIZE + 1);
+
+        return pageBean;
+    }
+
     @Override
     public List<Student> findAll() throws Exception
     {
@@ -24,7 +52,7 @@ public class StuServiceImpl implements StuService
     @Override
     public List<Student> findStudent(String stuName, String gender) throws Exception
     {
-        return stuDao.findStudent(stuName,gender);
+        return stuDao.findStudent(stuName, gender);
     }
 
     @Override

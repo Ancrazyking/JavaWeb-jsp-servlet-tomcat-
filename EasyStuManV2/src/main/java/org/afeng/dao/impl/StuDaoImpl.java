@@ -23,13 +23,14 @@ public class StuDaoImpl implements StuDao
     @Override
     public List<Student> findStudentByPage(int currentPage) throws Exception
     {
-        return null;
+        return queryRunner.query("select * from student limit ? offset ?",
+                new BeanListHandler<>(Student.class), PAGE_SIZE, (currentPage - 1) * PAGE_SIZE);
     }
 
     @Override
     public List<Student> findAll() throws Exception
     {
-        return queryRunner.query("select * from student", new BeanListHandler<Student>(Student.class));
+        return queryRunner.query("select * from student", new BeanListHandler<>(Student.class));
     }
 
     @Override
@@ -82,7 +83,7 @@ public class StuDaoImpl implements StuDao
     @Override
     public void insert(Student student) throws Exception
     {
-        queryRunner.update("insert into student values(?,?,?,?,?,?,?)", student.getStuId(),
+        queryRunner.update("insert into student values(null,?,?,?,?,?,?)",
                 student.getStuName(), student.getPhone(), student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday());
     }
 
@@ -96,7 +97,7 @@ public class StuDaoImpl implements StuDao
     public void update(Student student) throws Exception
     {
         queryRunner.update("update student  set stuname=?, phone= ?,gender=? , hobby=? ,info=? , birthday=?  where stuid=? ",
-                student.getStuName(), student.getPhone(),student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday(), student.getStuId());
+                student.getStuName(), student.getPhone(), student.getGender(), student.getHobby(), student.getInfo(), student.getBirthday(), student.getStuId());
     }
 
     @Override
@@ -105,7 +106,7 @@ public class StuDaoImpl implements StuDao
         /**
          * 获取总的记录数
          */
-        Integer result = (Integer) queryRunner.query("select count(*) from student", new ScalarHandler());
+        Long result = (Long) queryRunner.query("select count(*) from student", new ScalarHandler());
         return result.intValue();
     }
 }
