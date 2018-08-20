@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>英雄阵营联动</title>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        /**
+         * 文档加载完成
+         */
+        $(function () {
+            //JQuery获取到id为camp的选择框,当选择框的value发生改变时
+            $("#camp").change(function () {
+                var campId = $(this).val();
+
+                //发送post请求给findHero,第一个campId是可以从服务器端获取的
+                //function(data,status),回调函数
+                $.post("findHero", {campId: campId}, function (data, status) {
+
+                    $("#hero").html("<option value=''>--请选择--"+"</option>")
+
+                    /**
+                     * data表示从服务器端接收的信息
+                     */
+                    $(data).each(function(index, c) {
+                        $("#hero").append("<option value='" + c.heroId + "'>" + c.heroName+"</option>");
+                    });
+
+                }, "json");
+            });
+        });
+    </script>
+
+</head>
+<body>
+英雄阵营:&nbsp;<select name="camp" id="camp">
+    <option value="">--请选择--</option>
+    <option value="1">艾欧尼亚</option>
+    <option value="2">诺克萨斯</option>
+    <option value="3">弗雷尔卓德</option>
+    <option value="4">暗影岛</option>
+</select>&nbsp;&nbsp;
+英雄名称:&nbsp;
+<select name="hero" id="hero">
+    <option value="">--请选择--</option>
+</select>
+</body>
+</html>

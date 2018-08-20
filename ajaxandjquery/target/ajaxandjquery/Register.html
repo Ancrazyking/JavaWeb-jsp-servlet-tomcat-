@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生注册页面</title>
+    <script>
+        function ajaxFunction()
+        {
+            var xmlHttpRequest;
+            try
+            {
+                xmlHttpRequest = new XMLHttpRequest();
+            } catch (e)
+            {
+                try
+                {
+                    xmlHttpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e)
+                {
+                    try
+                    {
+                        xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e)
+                    {
+
+                    }
+                }
+            }
+            return xmlHttpRequest;
+        }
+
+        function post()
+        {
+            //创建XMLHttpRequest对象
+            var request = ajaxFunction();
+            var input = document.getElementById("userNameText");
+            //发送请求
+            request.open("POST", "check", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("userName=" + input.value);
+            //注册状态改变监听,获取服务器传送过来的数据
+            request.onreadystatechange = function () {
+
+                if (request.readyState == 4 && request.status == 200)
+                {
+                    var data = request.responseText;
+                    var span=document.getElementById("span1");
+
+                   // alert(data);
+                    if (data == 1)
+                    {
+                        //alert("用户已经存在!");
+                        span.innerHTML="<font color='red'>用户名已经存在!</font>";
+                    } else
+                    {
+                        //alert("用户未存在,可以使用");
+                        span.innerHTML="<font color='#87cefa'>当前用户名可以使用.</font>";
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
+        function notFocus()
+        {
+            var input = document.getElementById("password");
+            alert(input.value);
+        }
+    </script>
+
+
+</head>
+<body>
+
+学生姓名:<input type="text" id="userNameText" onblur="post()">
+
+<span id="span1">
+
+</span>
+<br>
+学生密码:<input type="text" id="password">
+<input type="button" value="点我" onclick="notFocus()">
+</body>
+</html>

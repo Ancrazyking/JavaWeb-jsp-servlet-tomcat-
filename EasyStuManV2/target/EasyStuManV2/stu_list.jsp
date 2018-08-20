@@ -82,7 +82,6 @@
                     |<a href="stu_listByPage?currentPage=${pageBean.currentPage-1}">上一页</a>
                 </c:if>
 
-
             </td>
         </tr>
     </table>

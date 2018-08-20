@@ -74,4 +74,14 @@
         <url-pattern>/stu_listByPage</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>GetServlet</servlet-name>
+        <servlet-class>org.afeng.servlet.GetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetServlet</servlet-name>
+        <url-pattern>/getServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

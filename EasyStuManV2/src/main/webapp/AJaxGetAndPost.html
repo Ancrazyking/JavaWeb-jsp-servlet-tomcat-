@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax发送Get请求和Post请求</title>
+</head>
+
+<script>
+    /**
+     * 获取xmlHttpRequest对象
+     * JS函数默认没有返回值类型
+     * 但是也是可以返回的
+     */
+    function ajaxFunction()
+    {
+        var xmlHttpRequest;
+        try
+        {
+            xmlHttpRequest = new XMLHttpRequest();
+        } catch (e)
+        {
+            try
+            {
+                xmlHttpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e)
+            {
+                try
+                {
+                    xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e)
+                {
+
+                }
+            }
+        }
+        return xmlHttpRequest;
+    }
+
+    function post()
+    {
+        //创建对象
+        var request = ajaxFunction();
+
+        //发送请求
+        request.open("POST", "getServlet", true);
+
+        request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        request.send("name=aobama&age=19");
+
+    }
+</script>
+
+<body>
+<a href="" onclick="post()">点击发送Post请求</a>
+</body>
+</html>

@@ -83,6 +83,8 @@
                 </c:if>
 
                 <c:forEach begin="1" end="${pageBean.totalPage }" var="i">
+
+                    <!--如果点击当前页,则不添加a标签,否则添加超链接-->
                     <c:if test="${pageBean.currentPage == i }">
                         ${i }
                     </c:if>
