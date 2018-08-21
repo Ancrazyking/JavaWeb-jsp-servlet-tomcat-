@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="autologin:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="autologin.war">
+      <element id="artifact" artifact-name="autologin:war exploded" />
+    </root>
+  </artifact>
+</component>
