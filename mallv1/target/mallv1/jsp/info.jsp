@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +24,10 @@
 			<div class="container">
 				<div class="main_con">
 
-					<h1>公司简介</h1>
+
+					${msg}
+
+	<%--				<h1>公司简介</h1>
 					<hr/>
 					<p>
 						<font color="red">“中关村黑马程序员训练营”</font>是由<b><i>传智播客</i></b>联合中关村软件园、CSDN，并委托传智播客进行教学实施的软件开发高端培训机构，致力于服务各大软件企业，解决当前软件开发技术飞速发展，而企业招不到优秀人才的困扰。<br/> 
@@ -43,7 +47,7 @@
 						</p>
 					</div>
 				</div>
-			</div>
+			</div>--%>
 
 		</div>
 		<%--页脚 --%>

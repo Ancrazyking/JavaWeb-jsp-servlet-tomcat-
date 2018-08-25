@@ -25,8 +25,29 @@ public class UserDaoImpl implements UserDao
     @Override
     public void userRegister(User user) throws SQLException
     {
-        String sql = "insert into user  values(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into user values(?,?,?,?,?,?,?,?,?,?)";
         queryRunner.update(sql, user.getUid(), user.getUsername(), user.getPassword(), user.getName(), user.getEmail(), user.getTelephone(),
                 user.getBirthday(), user.getSex(), user.getState(), user.getCode());
+    }
+
+    @Override
+    public User userActive(String code) throws SQLException
+    {
+        return queryRunner.query("select * from user where code=?", new BeanHandler<>(User.class), code);
+    }
+
+
+    @Override
+    public void userUpdate(User user) throws SQLException
+    {
+        String sql = "update user set username=?,password=?,name=?,email=?,telephone=?,birthday=?,sex=?,state=?,code=? where uid=?";
+        /**
+         * 拼接可变的参数
+         */
+
+        Object[] params = {user.getUsername(), user.getPassword(), user.getName(), user.getEmail(),
+                user.getTelephone(), user.getBirthday(), user.getSex(), user.getState(), user.getCode(), user.getUid()};
+        queryRunner.update(sql, params);
+
     }
 }

@@ -79,12 +79,16 @@ class MyRequest extends HttpServletRequestWrapper
     }
 
     @Override
+    /**
+     * map{ username=[tom],password=[123],hobby=[eat,drink]}
+     */
     public Map<String, String[]> getParameterMap()
     {
+
         /**
-         * 判断请求方式
-         * post请求  request.setcharset("utf-8");就行
-         * get请求  将map中的值遍历编码
+         * 首先判断请求方式
+         * 若为post  request.setchar...(utf-8)
+         * 若为get 将map中的值遍历编码就可以了
          */
         String method = request.getMethod();
         if ("post".equalsIgnoreCase(method))
@@ -93,11 +97,11 @@ class MyRequest extends HttpServletRequestWrapper
             {
                 request.setCharacterEncoding("utf-8");
                 return request.getParameterMap();
-            } catch (Exception e)
+            } catch (UnsupportedEncodingException e)
             {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-
         } else if ("get".equalsIgnoreCase(method))
         {
             Map<String, String[]> map = request.getParameterMap();
@@ -106,8 +110,10 @@ class MyRequest extends HttpServletRequestWrapper
                 for (String key : map.keySet())
                 {
                     String[] arr = map.get(key);
+                    //继续遍历数组
                     for (int i = 0; i < arr.length; i++)
                     {
+                        //编码
                         try
                         {
                             arr[i] = new String(arr[i].getBytes("iso-8859-1"), "utf-8");
@@ -116,12 +122,14 @@ class MyRequest extends HttpServletRequestWrapper
                             e.printStackTrace();
                         }
                     }
-
                 }
                 flag = false;
             }
+            //需要遍历map 修改value的每一个数据的编码
+
             return map;
         }
+
         return super.getParameterMap();
     }
 

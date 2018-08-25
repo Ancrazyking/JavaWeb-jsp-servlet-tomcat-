@@ -52,7 +52,7 @@ public class MailUtils
         //设置邮件的主题
         message.setSubject("用户激活");
 
-        String url = "http://localhost:8080/mall/UserServlet?method=active&code=" + emailMsg;
+        String url = "http://localhost:8080/UserServlet?method=active&code=" + emailMsg;
         String content = "<h1>来自商城的激活邮件!激活请点击以下链接!</h1><h3><a href='" + url + "'>"
                 + url + "</a></h3>";
 

@@ -14,4 +14,8 @@ public interface UserDao
 
     void userRegister(User user)throws SQLException;
 
+    User userActive(String code)throws SQLException;
+
+    void userUpdate(User user)throws SQLException;
+
 }

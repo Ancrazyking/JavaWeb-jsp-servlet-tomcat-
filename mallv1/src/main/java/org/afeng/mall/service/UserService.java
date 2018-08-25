@@ -11,7 +11,11 @@ import java.sql.SQLException;
 public interface UserService
 {
 
-    User UserLogin(User user) throws SQLException;
+    User userLogin(User user) throws SQLException;
 
     void userRegister(User user) throws SQLException;
+
+    User userActive(String code)throws SQLException;
+
+    void userUpdate(User user)throws SQLException;
 }
