@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
@@ -108,21 +109,22 @@
 
         <div class="col-md-5">
             <div style="width:440px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
-                <font>会员登录</font>USER LOGIN
-
+                <font>会员登录</font>
+                <font style="color:red;">${msg}</font>
                 <div>&nbsp;</div>
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="/UserServlet?method=userLogin" method="post">
 
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label">用户名</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="username" placeholder="请输入用户名">
+                            <input type="text" class="form-control" id="username" placeholder="请输入用户名" name="username">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="请输入密码"
+                                   name="password">
                         </div>
                     </div>
                     <div class="form-group">
@@ -139,10 +141,10 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox"> 自动登录
+                                    <input type="checkbox" name="autoLogin"> 自动登录
                                 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <label>
-                                    <input type="checkbox"> 记住用户名
+                                    <input type="checkbox" name="remUser"> 记住用户名
                                 </label>
                             </div>
                         </div>
@@ -155,6 +157,7 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

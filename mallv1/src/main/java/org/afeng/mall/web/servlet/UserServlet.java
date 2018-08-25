@@ -38,6 +38,17 @@ public class UserServlet extends BaseServlet
         return "/jsp/register.jsp";
     }
 
+    /**
+     * 登录跳转页面
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public String login(HttpServletRequest request, HttpServletResponse response)
+    {
+        return "/jsp/login.jsp";
+    }
 
     /**
      * 用户注册页面
@@ -98,5 +109,50 @@ public class UserServlet extends BaseServlet
         return "/jsp/login.jsp";
     }
 
+    /**
+     * 用户登录
+     *
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    public String userLogin(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        /**
+         * 从客户端获取的数据封装到user对象
+         */
+        User user = new User();
+        MyBeanUtils.populate(user, request.getParameterMap());
+        try
+        {
+            User loginUser = userService.userLogin(user);
+            //用户登录成功,将信息存入到Session会话中
+            request.getSession().setAttribute("loginUser", loginUser);
+            response.sendRedirect("/index.jsp");
+            return null;
+        } catch (Exception e)
+        {
+            //用户登录失败
+            String message = e.getMessage();
+            System.out.println(message);
+            request.setAttribute("msg", message);
+            return "/jsp/login.jsp";
+        }
+    }
 
+
+    public String userLogout(HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+        /**
+         * 使会话的session失效
+         */
+        request.getSession().invalidate();
+
+        /**
+         * 重定向到首页
+         */
+        response.sendRedirect("/index.jsp");
+        return null;
+    }
 }

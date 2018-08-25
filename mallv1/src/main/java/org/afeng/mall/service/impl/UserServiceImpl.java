@@ -20,7 +20,22 @@ public class UserServiceImpl implements UserService
     @Override
     public User userLogin(User user) throws SQLException
     {
-        return userDao.userLogin(user);
+        //此处可以利用异常在模块之间传递数据
+
+        /**
+         * 利用抛出异常来传递数据
+         */
+        User u = userDao.userLogin(user);
+        if (u == null)
+        {
+            throw new RuntimeException("密码有误!");
+        } else if (u.getState() == 0)
+        {
+            throw new RuntimeException("用户未激活!");
+        } else
+        {
+            return u;
+        }
     }
 
     @Override
@@ -35,7 +50,7 @@ public class UserServiceImpl implements UserService
          */
         try
         {
-            MailUtils.sendMail(user.getEmail(),user.getCode());
+            MailUtils.sendMail(user.getEmail(), user.getCode());
         } catch (Exception e)
         {
             e.printStackTrace();

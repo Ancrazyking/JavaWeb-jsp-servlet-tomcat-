@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao
     @Override
     public User userLogin(User user) throws SQLException
     {
-        return queryRunner.query("select where username=? and password=? and state=1", new BeanHandler<>(User.class), user.getUsername(), user.getPassword());
+        return queryRunner.query("select * from user  where username=? and password=?", new BeanHandler<>(User.class), user.getUsername(), user.getPassword());
     }
 
     @Override
