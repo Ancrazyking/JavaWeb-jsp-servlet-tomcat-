@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>关于我们</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
     <!-- 引入自定义css文件 style.css -->
@@ -19,10 +19,10 @@
             -->
 <div class="container-fluid">
     <div class="col-md-4">
-        <img src="${pageContext.request.contextPath}/img/logo2.png" />
+        <img src="${pageContext.request.contextPath}/img/logo2.png"/>
     </div>
     <div class="col-md-5">
-        <img src="${pageContext.request.contextPath}/img/header.png" />
+        <img src="${pageContext.request.contextPath}/img/header.png"/>
     </div>
     <div class="col-md-3" style="padding-top:20px">
         <ol class="list-inline">
@@ -34,7 +34,7 @@
                 <li><a href="#">欢迎${loginUser.username }</a></li>
                 <li><a href="${pageContext.request.contextPath}/UserServlet?method=userLogout">退出</a></li>
                 <li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
-                <li><a href="${pageContext.request.contextPath}/OrderServlet?method=findOrdersByUidWithPage&num=1">我的订单</a></li>
+                <li><a href="${pageContext.request.contextPath}">我的订单</a></li>
             </c:if>
         </ol>
     </div>
@@ -47,7 +47,8 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -59,11 +60,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="myUL">
-                    <%--
-                        <c:forEach items="${allCats}" var="c">
-                            <li><a href="#">${c.cname}</a></li>
-                        </c:forEach>
-                    --%>
+                    <%--    <c:forEach items="${categoryList}" var="category">
+                            <li><a href="#">${category.cname}</a></li>
+                        </c:forEach>--%>
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
@@ -79,6 +78,28 @@
     </nav>
 </div>
 </body>
+
+<script>
+    /**
+     * 文档加载完成后执行
+     * 通过Ajax异步向服务器发送请求
+     * 获取服务器响应的josn数据
+     * 通过回调函数获取响应的数据
+     * 拼接到html页面中
+     */
+    $(function () {
+        $.post("${pageContext.request.contextPath}/category", {"method": "findAllCategory"}, function (dt) {
+            $.each(dt, function (i, obj) {
+                var li = "<li><a href='${pageContext.request.contextPath}/ProductServlet?method=findProductsWithCidAndPage&num=1&cid="
+                    + obj.cid + "'>" + obj.cname + "</a></li>";
+                $("#myUL").append(li);
+            });
+        }, "json");
+    });
+
+</script>
+
+
 <%--<script>
     $(function(){
         $.post("${pageContext.request.contextPath}/CategoryServlet",{"method":"findAllCats"},function(dt){
@@ -93,9 +114,6 @@
         },"json");
     });
 </script>--%>
-
-
-
 
 
 </html>

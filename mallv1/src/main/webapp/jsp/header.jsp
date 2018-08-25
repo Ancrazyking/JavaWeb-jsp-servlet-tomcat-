@@ -60,11 +60,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav" id="myUL">
-                    <%--
-                        <c:forEach items="${allCats}" var="c">
-                            <li><a href="#">${c.cname}</a></li>
-                        </c:forEach>
-                    --%>
+                    <%--    <c:forEach items="${categoryList}" var="category">
+                            <li><a href="#">${category.cname}</a></li>
+                        </c:forEach>--%>
                 </ul>
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
@@ -80,6 +78,28 @@
     </nav>
 </div>
 </body>
+
+<script>
+    /**
+     * 文档加载完成后执行
+     * 通过Ajax异步向服务器发送请求
+     * 获取服务器响应的josn数据
+     * 通过回调函数获取响应的数据
+     * 拼接到html页面中
+     */
+    $(function () {
+        $.post("${pageContext.request.contextPath}/category", {"method": "findAllCategory"}, function (dt) {
+            $.each(dt, function (i, obj) {
+                var li = "<li><a href='${pageContext.request.contextPath}/ProductServlet?method=findProductsWithCidAndPage&num=1&cid="
+                    + obj.cid + "'>" + obj.cname + "</a></li>";
+                $("#myUL").append(li);
+            });
+        }, "json");
+    });
+
+</script>
+
+
 <%--<script>
     $(function(){
         $.post("${pageContext.request.contextPath}/CategoryServlet",{"method":"findAllCats"},function(dt){

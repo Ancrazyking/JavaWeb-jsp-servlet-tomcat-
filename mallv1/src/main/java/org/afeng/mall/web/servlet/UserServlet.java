@@ -129,7 +129,7 @@ public class UserServlet extends BaseServlet
             User loginUser = userService.userLogin(user);
             //用户登录成功,将信息存入到Session会话中
             request.getSession().setAttribute("loginUser", loginUser);
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("/jsp/index.jsp");
             return null;
         } catch (Exception e)
         {
@@ -152,7 +152,7 @@ public class UserServlet extends BaseServlet
         /**
          * 重定向到首页
          */
-        response.sendRedirect("/index.jsp");
+        response.sendRedirect("/jsp/index.jsp");
         return null;
     }
 }

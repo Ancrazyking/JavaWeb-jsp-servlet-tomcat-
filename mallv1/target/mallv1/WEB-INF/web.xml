@@ -24,6 +24,28 @@
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
     </servlet-mapping>
+
+    <!--入口Servlet-->
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>org.afeng.mall.web.servlet.IndexServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
+    <!--商品Servlet-->
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>org.afeng.mall.web.servlet.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+
+
     <!--配置UserServlet-->
     <servlet>
         <servlet-name>UserServlet</servlet-name>

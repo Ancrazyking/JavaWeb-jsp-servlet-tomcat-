@@ -39,7 +39,18 @@
 <body>
 
 
-<!--
+
+
+
+
+
+
+
+
+<%@include file="header.jsp"%>
+
+
+<%--<!--
     描述：菜单栏
 -->
 <div class="container-fluid">
@@ -57,8 +68,8 @@
             <li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
         </ol>
     </div>
-</div>
-<!--
+</div>--%>
+<%--<!--
     描述：导航条
 -->
 <div class="container-fluid">
@@ -96,7 +107,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-</div>
+</div>--%>
 
 
 <div class="container" style="width:100%;background:url('${pageContext.request.contextPath}/img/regist_bg.jpg');">
@@ -199,7 +210,7 @@
     <img src="${pageContext.request.contextPath}/img/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势"/>
 </div>
 
-<div style="text-align: center;margin-top: 5px;">
+<%--<div style="text-align: center;margin-top: 5px;">
     <ul class="list-inline">
         <li><a href="${pageContext.request.contextPath}/jsp/info.jsp">关于我们</a></li>
         <li><a>联系我们</a></li>
@@ -214,8 +225,8 @@
 </div>
 <div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
     Copyright &copy; 2005-2016 传智商城 版权所有
-</div>
-
+</div>--%>
+<%@include file="footer.jsp"%>
 </body>
 </html>
 
