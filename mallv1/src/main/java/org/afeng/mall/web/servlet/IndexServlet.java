@@ -1,14 +1,15 @@
 package org.afeng.mall.web.servlet;
 
-import com.alibaba.fastjson.JSON;
-import org.afeng.mall.domain.Category;
-import org.afeng.mall.service.CategoryService;
-import org.afeng.mall.service.impl.CategoryServiceImpl;
+
+import org.afeng.mall.domain.Product;
+import org.afeng.mall.service.ProductService;
+
+import org.afeng.mall.service.impl.ProductServiceImpl;
 import org.afeng.mall.web.base.BaseServlet;
 
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * @author afeng
@@ -18,10 +19,17 @@ public class IndexServlet extends BaseServlet
 {
 
     // CategoryService categoryService = new CategoryServiceImpl();
+    ProductService productService = new ProductServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception
     {
+        List<Product> hotProducts = productService.findHotProducts();
+        List<Product> newProducts = productService.findNewProducts();
+
+        request.setAttribute("hotProducts", hotProducts);
+        request.setAttribute("newProducts", newProducts);
+
         return "/jsp/index.jsp";
     }
 

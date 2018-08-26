@@ -35,7 +35,7 @@
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
-    <!--商品Servlet-->
+    <!--商品类别Servlet-->
     <servlet>
         <servlet-name>CategoryServlet</servlet-name>
         <servlet-class>org.afeng.mall.web.servlet.CategoryServlet</servlet-class>
@@ -43,6 +43,17 @@
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+
+
+    <!--商品详情Servlet-->
+    <servlet>
+        <servlet-name>ProductServlet</servlet-name>
+        <servlet-class>org.afeng.mall.web.servlet.ProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductServlet</servlet-name>
+        <url-pattern>/productInfo</url-pattern>
     </servlet-mapping>
 
 
