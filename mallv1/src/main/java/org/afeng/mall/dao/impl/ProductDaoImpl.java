@@ -3,10 +3,14 @@ package org.afeng.mall.dao.impl;
 import org.afeng.mall.dao.ProductDao;
 import org.afeng.mall.domain.Product;
 import org.afeng.mall.utils.JDBCUtils;
+import org.afeng.mall.utils.PageModel;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.junit.jupiter.api.Test;
 
+import javax.sound.midi.Soundbank;
 import java.util.List;
 
 /**
@@ -44,4 +48,36 @@ public class ProductDaoImpl implements ProductDao
         String sql = "select * from product where pflag=0 order by pdate desc limit 0,9";
         return queryRunner.query(sql, new BeanListHandler<>(Product.class));
     }
+
+    /**
+     * 通过cid获取该分类下所有商品的记录
+     *
+     * @param cid
+     * @param startIndex
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public List<Product> findProductsByCid(String cid, int startIndex, int pageSize) throws Exception
+    {
+        String sql = "select * from product where cid=? limit ?,?";
+
+        return queryRunner.query(sql, new BeanListHandler<>(Product.class), cid, startIndex, pageSize);
+    }
+
+    /**
+     * 获取该分类下的所有商品的记录总数
+     *
+     * @param cid
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public int findTotalRecords(String cid) throws Exception
+    {
+        String sql = "select * from product where cid=1";
+        return 30;
+    }
+
 }

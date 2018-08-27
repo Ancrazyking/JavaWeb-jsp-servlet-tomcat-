@@ -53,7 +53,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductServlet</servlet-name>
-        <url-pattern>/productInfo</url-pattern>
+        <url-pattern>/product</url-pattern>
     </servlet-mapping>
 
 

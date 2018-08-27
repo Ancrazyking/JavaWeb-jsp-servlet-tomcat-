@@ -1,6 +1,7 @@
 package org.afeng.mall.service;
 
 import org.afeng.mall.domain.Product;
+import org.afeng.mall.utils.PageModel;
 
 import java.util.List;
 
@@ -16,5 +17,7 @@ public interface ProductService
 
     List<Product> findHotProducts() throws Exception;
 
-    List<Product> findNewProducts()throws Exception;
+    List<Product> findNewProducts() throws Exception;
+
+    PageModel<Product> findProductsWithCidAndPage(String cid, int currentPageNum) throws Exception;
 }

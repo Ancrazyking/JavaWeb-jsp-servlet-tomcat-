@@ -81,6 +81,7 @@
 
 <script>
     /**
+     * 首页标题栏展示分类信息
      * 文档加载完成后执行
      * 通过Ajax异步向服务器发送请求
      * 获取服务器响应的josn数据
@@ -90,7 +91,7 @@
     $(function () {
         $.post("${pageContext.request.contextPath}/category", {"method": "findAllCategory"}, function (dt) {
             $.each(dt, function (i, obj) {
-                var li = "<li><a href='${pageContext.request.contextPath}/ProductServlet?method=findProductsWithCidAndPage&num=1&cid="
+                var li = "<li><a href='${pageContext.request.contextPath}/product?method=findProductsWithCidAndPage&pageNum=1&cid="
                     + obj.cid + "'>" + obj.cname + "</a></li>";
                 $("#myUL").append(li);
             });

@@ -4,6 +4,7 @@ import org.afeng.mall.dao.ProductDao;
 import org.afeng.mall.dao.impl.ProductDaoImpl;
 import org.afeng.mall.domain.Product;
 import org.afeng.mall.service.ProductService;
+import org.afeng.mall.utils.PageModel;
 
 import java.util.List;
 
@@ -32,5 +33,17 @@ public class ProductServiceImpl implements ProductService
     public List<Product> findNewProducts() throws Exception
     {
         return productDao.findNewProducts();
+    }
+
+    @Override
+    public PageModel<Product> findProductsWithCidAndPage(String cid, int currentPageNum) throws Exception
+    {
+
+        int totalRecords = productDao.findTotalRecords(cid);
+        PageModel<Product> pageModel = new PageModel<>(currentPageNum, totalRecords, 12);
+        List<Product> productList = productDao.findProductsByCid(cid, pageModel.getStartIndex(), pageModel.getPageSize());
+        pageModel.setList(productList);
+        pageModel.setUrl("product?method=findProductsWithCidAndPage&cid=" + cid);
+        return pageModel;
     }
 }

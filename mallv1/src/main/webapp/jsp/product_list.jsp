@@ -1,5 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html>
 
@@ -28,15 +30,13 @@
 </head>
 
 
-
-
-
 <body>
 
+<%@include file="header.jsp" %>
 <!--
     描述：菜单栏
 -->
-<div class="container-fluid">
+<%--<div class="container-fluid">
     <div class="col-md-4">
         <img src="${pageContext.request.contextPath}/img/logo2.png"/>
     </div>
@@ -45,14 +45,15 @@
     </div>
     <div class="col-md-3" style="padding-top:20px">
         <ol class="list-inline">
-            <li><a href="${pageContext.request.contextPath}/UserServlet?method=login">登录</a></li>
+            <li><a href="${pageContext.request.contextPath}/UserServlet?method=login1/">登录</a></li>.0
             <li><a href="${pageContext.request.contextPath}/UserServlet?method=register">注册</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/cart.jsp">购物车</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/order_list.jsp">我的订单</a></li>
         </ol>
     </div>
-</div>
-<!--
+</div>--%>
+
+<%--<!--
     描述：导航条
 -->
 <div class="container-fluid">
@@ -89,8 +90,8 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
-    </nav>
-</div>
+    </nav
+</div>--%>
 
 
 <div class="row" style="width:1210px;margin:0 auto;">
@@ -100,112 +101,39 @@
         </ol>
     </div>
 
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10001.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>冬瓜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
+    <!--当从数据库查询的数据为空时,显示没有数据-->
+    <c:if test="${empty page.list}">
+        <div class="col-md-2">
+            <h1>暂无数据</h1>
+        </div>
+    </c:if>
 
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10002.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>圆白菜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
+    <!--判断数据不为空-->
+    <c:if test="${not empty page.list}">
+        <c:forEach items="${page.list}" var="p">
+            <div class="col-md-2">
+                <a href="${pageContext.request.contextPath}/product?method=findProductByPid&pid=${p.pid}">
+                    <img src="${pageContext.request.contextPath}/${p.pimage}" width="170" height="170"
+                         style="display: inline-block;">
+                </a>
+                <p><a href="${pageContext.request.contextPath}/product?method=findProductByPid&pid=${p.pid}"
+                      style='color:green'>${p.pname}</a></p>
+                <p><font color="#FF0000">商城价：&yen;&yen${p.shop_price}</font></p>
+            </div>
+        </c:forEach>
+        <br>
+        <br>
+        <div>
+            <jsp:include page="/jsp/pageFile.jsp"></jsp:include>
+        </div>
+    </c:if>
 
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10003.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>甜玉米</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10004.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>胡萝卜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10005.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>芹菜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10006.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>韭菜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>香菜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>土豆</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>香菜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>土豆</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10007.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>香菜</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
-    <div class="col-md-2">
-        <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
-            <img src="${pageContext.request.contextPath}/products/1/cs10008.jpg" width="170" height="170"
-                 style="display: inline-block;">
-        </a>
-        <p><a href="${pageContext.request.contextPath}/jsp/product_info.jsp" style='color:green'>土豆</a></p>
-        <p><font color="#FF0000">商城价：&yen;299.00</font></p>
-    </div>
 
 </div>
 
+<!--包含分页的信息-->
 <!--分页 -->
-<div style="width:380px;margin:0 auto;margin-top:50px;">
+<%--<div style="width:380px;margin:0 auto;margin-top:50px;">
     <ul class="pagination" style="text-align:center; margin-top:10px;">
         <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
         <li class="active"><a href="#">1</a></li>
@@ -223,28 +151,28 @@
             </a>
         </li>
     </ul>
-</div>
+</div>--%>
 <!-- 分页结束=======================        -->
 
 <!--
        商品浏览记录:
 -->
-<div style="width:1210px;margin:0 auto; padding: 0 9px;border: 1px solid #ddd;border-top: 2px solid #999;height: 246px;">
+<%--<div style="width:1210px;margin:0 auto; padding: 0 9px;border: 1px solid #ddd;border-top: 2px solid #999;height: 246px;">
 
-    <h4 style="width: 50%;float: left;font: 14px/30px " 微软雅黑 ";">浏览记录</h4>
+    <h4 style="width: 50%;float: left;font: 14px/30px 微软雅黑;">浏览记录</h4>
     <div style="width: 50%;float: right;text-align: right;"><a href="">more</a></div>
     <div style="clear: both;"></div>
 
     <div style="overflow: hidden;">
 
         <ul style="list-style: none;">
-            <li style="width: 150px;height: 216;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
+            <li style="width:150px;height:216px;float: left;margin: 0 8px 0 0;padding: 0 18px 15px;text-align: center;">
                 <img src="${pageContext.request.contextPath}/products/1/cs10001.jpg" width="130px" height="130px"/></li>
         </ul>
 
     </div>
-</div>
-<div style="margin-top:50px;">
+</div>--%>
+<%--<div style="margin-top:50px;">
     <img src="${pageContext.request.contextPath}/img/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势"/>
 </div>
 
@@ -263,8 +191,8 @@
 </div>
 <div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
     Copyright &copy; 2005-2016 传智商城 版权所有
-</div>
-
+</div>--%>
+<%@include file="footer.jsp" %>
 </body>
 
 </html>
